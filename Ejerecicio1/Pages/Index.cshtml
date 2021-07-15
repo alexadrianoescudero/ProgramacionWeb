@@ -1,0 +1,70 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Bibliografia</title>
+</head>
+<style>
+    #contenedor1 {
+        width: 500px;
+        height: 500px;
+        border: 10px solid black;
+    }
+
+    .contenedores {
+        width: 500px;
+        height: 500px;
+        border: 10px solid black;
+    }
+
+    #did2 {
+        width: 500px;
+        height: 500px;
+        border: 1px solid red;
+    }
+
+    .Imagenes {
+        width: 50%;
+        height: 50%;
+        border: 10px solid blanchedalmond;
+    }
+
+    .Cuerpo {
+        background-color: aqua;
+    }
+</style>
+<body>
+    <br>
+    <h1> <marquee>Alex Adriano</marquee>  </h1>
+    <h1> <marquee direction="up">Alex Adriano</marquee>  </h1>
+    <h1> <marquee direction="dow">Alex Adriano</marquee>  </h1>
+    <h2>Mensaje 1 </h2>
+    <h3>Mensaje 1 </h3>
+    <h4>Mensaje 1 </h4>
+    <h5>Mensaje 1 </h5>
+    <h6>Mensaje 1 </h6>
+    <p>Parrofo <strong> </br> Alex  </strong></p>
+    <p><u> Parrofo </u> </p>
+    <p><center> Parrofo </center> </p>
+    <p>Alex <sup> Parrofo </sup> </p>
+    <p>Alex <sub> Parrofo </sub> </p>
+
+
+    <div class="contenedores Cuerpo">
+        Contenedor 1
+        <img src="~/imagenes/prueba.png" class="Imagenes" alt="Imagen 1">
+        <a href="https://www.youtube.com/">Vistanos en youtube</a>
+        <a href="https://www.facebook.com/"><img src="~/imagenes/prueba.png" height="50%" width="50%" alt="Imagen 1"></a>
+    </div>
+    </br>
+    <div id="did2">
+        Contenedor 2
+        <img src="~/imagenes/prueba1.png" class="Imagenes" alt="Nombre imagen">
+    </div>
+
+</body>
+</html>
