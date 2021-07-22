@@ -1,5 +1,6 @@
 ﻿using Crud.Data;
 using Crud.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Crud.Controllers
 {
+    [Authorize]
     public class PesonasController : Controller
     {
 
@@ -17,14 +19,14 @@ namespace Crud.Controllers
         {
             _applicationDbContext = applicationDbContext;
         }
-
+        [Authorize(Roles= "Admin,User")]
         public IActionResult Index()
         {
             List<Persona> personas = new List<Persona>();
             personas = _applicationDbContext.Persona.ToList();
             return View(personas);
         }
-
+        [Authorize(Roles = "Admin,User")]
         public IActionResult Details(int Codigo)
         {
 
@@ -36,10 +38,12 @@ namespace Crud.Controllers
             return View(persona);
 
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(Persona persona)
         {
@@ -58,6 +62,7 @@ namespace Crud.Controllers
 
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             if (id == 0)
@@ -68,7 +73,7 @@ namespace Crud.Controllers
             return View(persona);
 
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Edit(int id, Persona persona)
         {
@@ -90,27 +95,7 @@ namespace Crud.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Delete(int id)
-        {
-            if (id == 0)
-                return RedirectToAction("Index");
-            Persona persona = _applicationDbContext.Persona.Where(x => x.Codigo == id).FirstOrDefault();
-            try
-            {
-                _applicationDbContext.Remove(persona);
-                _applicationDbContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine(ex.Message);
-
-                return RedirectToAction("Index");
-            }
-
-            return RedirectToAction("Index");
-
-        }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Desactivar(int id)
         {
             if (id == 0)
@@ -132,6 +117,7 @@ namespace Crud.Controllers
             return RedirectToAction("Index");
 
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Activar(int id)
         {
             if (id == 0)
